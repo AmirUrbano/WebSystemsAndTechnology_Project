@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PawPals helps pet owners track vaccinations, appointments, and care reminders for their pets in one place."
+    />
+    <title>PawPals - Your Daily Pal!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <div class="brand-container">
+          <div class="logo" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 500 500"
+              width="100%"
+              height="100%"
+            >
+              <defs>
+                <!-- Soft Drop Shadow for Depth -->
+                <filter
+                  id="soft-shadow"
+                  x="-10%"
+                  y="-10%"
+                  width="120%"
+                  height="120%"
+                >
+                  <feDropShadow
+                    dx="0"
+                    dy="8"
+                    stdDeviation="12"
+                    flood-color="#2B2927"
+                    flood-opacity="0.08"
+                  />
+                </filter>
+
+                <!-- Warm Earthy Gradients -->
+                <linearGradient
+                  id="main-pad-grad"
+                  x1="0%"
+                  y1="0%"
+                  x2="0%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="#C86D51" />
+                  <stop offset="100%" stop-color="#B35B40" />
+                </linearGradient>
+
+                <linearGradient id="toe-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#5B7B68" />
+                  <stop offset="100%" stop-color="#4A6856" />
+                </linearGradient>
+              </defs>
+
+              <!-- Circular Base (Soft Oat Background) -->
+              <rect width="100%" height="100%" rx="100" fill="#F9F6F0" />
+
+              <!-- Paw Group with Shadow -->
+              <g filter="url(#soft-shadow)">
+                <!-- Outer LeftToe -->
+                <ellipse
+                  cx="150"
+                  cy="205"
+                  rx="34"
+                  ry="46"
+                  fill="url(#toe-grad)"
+                  transform="rotate(-28 150 205)"
+                />
+
+                <!-- Inner LeftToe -->
+                <ellipse
+                  cx="215"
+                  cy="155"
+                  rx="36"
+                  ry="50"
+                  fill="url(#toe-grad)"
+                  transform="rotate(-10 215 155)"
+                />
+
+                <!-- Inner RightToe -->
+                <ellipse
+                  cx="285"
+                  cy="155"
+                  rx="36"
+                  ry="50"
+                  fill="url(#toe-grad)"
+                  transform="rotate(10 285 155)"
+                />
+
+                <!-- Outer RightToe -->
+                <ellipse
+                  cx="350"
+                  cy="205"
+                  rx="34"
+                  ry="46"
+                  fill="url(#toe-grad)"
+                  transform="rotate(28 350 205)"
+                />
+
+                <!-- palm pad -->
+                <path
+                  d="M 250 230
+                   C 210 230, 155 260, 155 310
+                   C 155 355, 190 380, 225 380
+                   C 240 380, 246 372, 250 372
+                   C 254 372, 260 380, 275 380
+                   C 310 380, 345 355, 345 310
+                   C 345 260, 290 230, 250 230 Z"
+                  fill="url(#main-pad-grad)"
+                />
+
+                <!-- Heart design in the paw -->
+                <path
+                  d="M 250 322
+                   C 245 315, 230 300, 222 310
+                   C 215 318, 222 330, 250 348
+                   C 278 330, 285 318, 278 310
+                   C 270 300, 255 315, 250 322 Z"
+                  fill="#F9F6F0"
+                  opacity="0.9"
+                />
+              </g>
+            </svg>
+          </div>
+          <h1>PawPals</h1>
+        </div>
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="#dashboard" aria-current="page">Dashboard</a></li>
+            <li><a href="#pets">My Pets</a></li>
+            <li><a href="#appointments">Appointments</a></li>
+            <li><a href="#records">Records</a></li>
+            <li><a href="#reminders">Reminders</a></li>
+          </ul>
+        </nav>
+        <!-- User Controls -->
+        <div class="user-actions" id="user-actions">
+          <button type="button" class="btn-login" id="login-btn">Log In</button>
+          <button type="button" class="btn-signup" id="signup-btn">
+            Sign Up
+          </button>
+
+          <div class="user-profile" id="user-profile" hidden>
+            <span class="user-name">Hello, Bogart!</span>
+            <button type="button" class="btn-logout" id="logout-btn">
+              Log Out
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- Dashboard -->
+      <section id="dashboard" aria-labelledby="dashboard-heading">
+        <h2 id="dashboard-heading">Dashboard</h2>
+        <p>Quick overview of upcoming vaccinations and appointments.</p>
+
+        <!-- Dashboard Summary Cards -->
+        <div class="dashboard-summary">
+          <div class="summary-card">
+            <h3>Total Pets</h3>
+            <span class="summary-count" id="total-pets-count">1</span>
+            <p>Active pet profiles</p>
+          </div>
+
+          <div class="summary-card">
+            <h3>Upcoming Appointments</h3>
+            <span class="summary-count warning" id="upcoming-appointments-count"
+              >1</span
+            >
+            <p>Scheduled this month</p>
+          </div>
+
+          <div class="summary-card">
+            <h3>Overdue Reminders</h3>
+            <span class="summary-count danger" id="overdue-reminders-count"
+              >0</span
+            >
+            <p>Requires immediate action</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pets -->
+      <section id="pets" aria-labelledby="pets-heading">
+        <h2 id="pets-heading">My Pets</h2>
+
+        <h3>Pet List</h3>
+        <table>
+          <caption>
+            Registered pets and their basic info
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Date of Birth</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="pet-list-body">
+            <tr>
+              <td>Jograt</td>
+              <td>Dog</td>
+              <td><time datetime="2020-05-10">May 10, 2020</time></td>
+              <td>
+                <button type="button" class="edit-btn">Edit</button>
+                <button type="button" class="delete-btn">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Boglet</td>
+              <td>Cat</td>
+              <td><time datetime="2021-03-15">Mar 15, 2021</time></td>
+              <td>
+                <button type="button" class="edit-btn">Edit</button>
+                <button type="button" class="delete-btn">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <form action="#" method="post" aria-label="Register a new pet">
+          <fieldset>
+            <legend>Register a Pet</legend>
+
+            <label for="petName">Pet Name:</label>
+            <input type="text" id="petName" name="petName" required />
+
+            <label for="petType">Type:</label>
+            <select id="petType" name="petType" required>
+              <option value="" selected disabled>Select type</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="bird">Bird</option>
+              <option value="other">Other</option>
+            </select>
+
+            <label for="dob">Date of Birth:</label>
+            <!-- TODO (JS): set max attribute to today's date so future DOBs can't be selected -->
+            <input type="date" id="dob" name="dob" />
+
+            <button type="submit">Add Pet</button>
+          </fieldset>
+        </form>
+
+        <!-- Template for adding new pet rows via JS later -->
+        <template id="pet-row-template">
+          <tr>
+            <td class="pet-name"></td>
+            <td class="pet-type"></td>
+            <td class="pet-dob"></td>
+            <td>
+              <button type="button" class="edit-btn">Edit</button>
+              <button type="button" class="delete-btn">Delete</button>
+            </td>
+          </tr>
+        </template>
+      </section>
+
+      <!-- Appointments -->
+      <section id="appointments" aria-labelledby="appointments-heading">
+        <h2 id="appointments-heading">Appointments</h2>
+
+        <form action="#" method="post" aria-label="Schedule a new appointment">
+          <fieldset>
+            <legend>Schedule Appointment</legend>
+
+            <label for="apptPet">Pet:</label>
+            <select id="apptPet" name="apptPet" required>
+              <option value="" selected disabled>Select pet</option>
+              <!-- auto fill na galing sa petlist -->
+            </select>
+
+            <label for="apptType">Appointment Type:</label>
+            <select id="apptType" name="apptType" required>
+              <option value="" selected disabled>Select type</option>
+              <option value="vaccination">Vaccination</option>
+              <option value="checkup">Checkup</option>
+              <option value="deworming">Deworming</option>
+              <option value="grooming">Grooming</option>
+              <option value="other">Other</option>
+            </select>
+
+            <label for="date">Date:</label>
+            <!-- TODO (JS): set min attribute to today's date so past dates can't be selected -->
+            <input type="date" id="date" name="date" required />
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" />
+
+            <label for="vet">Veterinarian:</label>
+            <input
+              type="text"
+              id="vet"
+              name="vet"
+              required
+              pattern="[A-Za-z\s.'\-]+"
+              title="Enter a valid name (letters only)"
+            />
+
+            <button type="submit">Schedule</button>
+          </fieldset>
+        </form>
+
+        <h3>Upcoming Appointments</h3>
+        <ul id="appointment-list">
+          <li>
+            <div class="appointment-details">
+              <span class="pet-name">Jograt</span> —
+              <span class="event-type">Vaccination</span> —
+              <span class="vet-name">Dra. Tugare</span> —
+              <time datetime="2026-10-10T14:00">Oct 10, 2026, 2:00 PM</time>
+            </div>
+            <div class="appointment-actions">
+              <button type="button" class="edit-btn">Edit</button>
+              <button type="button" class="delete-btn">Delete</button>
+            </div>
+          </li>
+        </ul>
+
+        <template id="appointment-item-template">
+          <li>
+            <div class="appointment-details">
+              <span class="pet-name"></span> —
+              <span class="event-type"></span> —
+              <span class="vet-name"></span> —
+              <time></time>
+            </div>
+            <div class="appointment-actions">
+              <button type="button" class="edit-btn">Edit</button>
+              <button type="button" class="delete-btn">Delete</button>
+            </div>
+          </li>
+        </template>
+      </section>
+
+      <!-- Records -->
+      <section id="records" aria-labelledby="records-heading">
+        <h2 id="records-heading">Medical Records</h2>
+        <table>
+          <caption>
+            Medical history per pet
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Pet</th>
+              <th scope="col">Vaccine</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="records-body">
+            <tr>
+              <td>Jograt</td>
+              <td>Rabies</td>
+              <td><time datetime="2025-09-15">Sep 15, 2025</time></td>
+              <td>
+                <span class="status" data-status="completed">Completed</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <template id="record-row-template">
+          <tr>
+            <td class="record-pet"></td>
+            <td class="record-vaccine"></td>
+            <td><time class="record-date"></time></td>
+            <td><span class="status"></span></td>
+          </tr>
+        </template>
+      </section>
+
+      <!-- Reminders -->
+      <section id="reminders" aria-labelledby="reminders-heading">
+        <h2 id="reminders-heading">Reminders</h2>
+        <ul id="reminder-list">
+          <li data-due="upcoming">
+            <div class="reminder-details">
+              <span class="pet-name">Jograt</span> —
+              <span class="event-type">Deworming</span> due
+              <time datetime="2026-10-20">Oct 20, 2026</time>
+            </div>
+            <div class="reminder-actions">
+              <button type="button" class="complete-btn">
+                Mark as Complete
+              </button>
+            </div>
+          </li>
+          <li data-due="overdue">
+            <div class="reminder-details">
+              <span class="pet-name">Boglet</span> —
+              <span class="event-type">Annual Checkup</span> due
+              <time datetime="2026-08-01">Aug 1, 2026</time>
+            </div>
+            <div class="reminder-actions">
+              <button type="button" class="complete-btn">
+                Mark as Complete
+              </button>
+            </div>
+          </li>
+        </ul>
+
+        <template id="reminder-item-template">
+          <li data-due="upcoming">
+            <div class="reminder-details">
+              <span class="pet-name"></span> —
+              <span class="event-type"></span> due
+              <time></time>
+            </div>
+            <div class="reminder-actions">
+              <button type="button" class="complete-btn">
+                Mark as Complete
+              </button>
+            </div>
+          </li>
+        </template>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 PawPals | Pet Care & Vaccination Reminder System</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
