@@ -18,9 +18,9 @@ PawPals is a modern, responsive browser-based pet care and vaccination managemen
 
 ## Built With
 
-* **HTML5:** Semantic layout, accessible form structures, and native templates.
-* **CSS3:** Custom properties (CSS variables), Flexbox, CSS Grid, and responsive styling.
-* **JavaScript (ES6+):** Dynamic DOM manipulation, template cloning, date validation, and interactive state management.
+* **HTML:** Semantic layout, accessible form structures, and native templates.
+* **CSS:** Custom properties (CSS variables), Flexbox, CSS Grid, and responsive styling.
+* **JavaScript:** Dynamic DOM manipulation, template cloning, date validation, and interactive state management.
 
 ---
 
